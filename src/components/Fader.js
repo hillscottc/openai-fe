@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import "../index.css";
 
 const Fader = ({ text }) => {
@@ -20,6 +19,7 @@ const Fader = ({ text }) => {
       }
     }, 4000);
 
+    // cleanup required to prevent memory leak
     return () => clearInterval(timeout);
   }, [fadeProp]);
 
@@ -30,14 +30,6 @@ const Fader = ({ text }) => {
       </h1>
     </>
   );
-};
-
-Fader.defaultProps = {
-  text: "Hello World!",
-};
-
-Fader.propTypes = {
-  text: PropTypes.string,
 };
 
 export default Fader;

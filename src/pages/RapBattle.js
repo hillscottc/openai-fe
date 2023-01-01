@@ -2,11 +2,11 @@ import {useState, useContext} from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import {Dna} from "react-loader-spinner";
-import {getJargon} from "../utils.js";
+import {getJargon} from "../common/utils.js";
 import MicIcon from "@mui/icons-material/Mic";
 import Fader from "../components/Fader";
-import {fetchRapBattle} from "../dataFunctions";
-import {AppContext} from "../components/AppContext";
+import {fetchRapBattle} from "../common/dataFunctions";
+import {AppContext} from "../AppContext";
 
 function RapBattle() {
   const [formData, setFormData] = useState({

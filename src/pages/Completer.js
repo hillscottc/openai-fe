@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Typography from "@mui/material/Typography";
 import SmsIcon from "@mui/icons-material/Sms";
-import {fetchCompleter} from "../dataFunctions";
+import {fetchCompleter} from "../common/dataFunctions";
 
 function Completer() {
   const [input, setInput] = useState("");
