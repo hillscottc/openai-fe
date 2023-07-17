@@ -39,10 +39,21 @@ function App() {
 
   return (
     <div className="App">
-      {/* <header className="App-header"> */}
-      <img src={logo} className="App-logo" alt="logo" />
-      {/* </header> */}
-      <div>
+      <div class="header">
+        <a href="#default" class="logo">
+          <img src={logo} className="App-logo" alt="logo" />
+          My OpenAI Interface
+        </a>
+        <div class="header-right">
+          <a class="active" href="#home">
+            Home
+          </a>
+          <a href="#contact">Contact</a>
+          <a href="#about">About</a>
+        </div>
+      </div>
+
+      <main>
         <h2>Tell me something, and I'll tell you more</h2>
         <textarea
           value={input}
@@ -54,7 +65,7 @@ function App() {
           Complete Sentence
         </button>
         {completedSentence && <p>Completed sentence: {completedSentence}</p>}
-      </div>
+      </main>
     </div>
   );
 }
