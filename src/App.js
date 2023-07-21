@@ -1,7 +1,8 @@
-import logo from "./logo.svg";
-import "./App.css";
 import axios from "axios";
 import { useState } from "react";
+import { Configuration, OpenAIApi } from "openai";
+import Header from "./Header";
+import "./App.css";
 
 const fetchData = async (input) => {
   const response = await axios.post(
@@ -20,11 +21,39 @@ const fetchData = async (input) => {
       },
     }
   );
-
   return response.data.choices[0].text;
 };
 
+const fetchRapperData = async (person1, person2) => {
+  const configuration = new Configuration({
+    apiKey: process.env.REACT_APP_OPENAI_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
+
+  const response = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "user",
+        content: `Write a rap battle between ${person1} and ${person2}.`,
+      },
+    ],
+    temperature: 0.8,
+    max_tokens: 1024,
+  });
+  // return response.data;
+  console.log("Got:", response.data.choices[0].message?.content);
+  return response.data.choices[0].message?.content;
+};
+
 function App() {
+  const [formData, setFormData] = useState({
+    person1: "",
+    person2: "",
+  });
+
+  const [rapResults, setRapResults] = useState("");
+
   const [input, setInput] = useState("");
   const [completedSentence, setCompletedSentence] = useState("");
 
@@ -37,25 +66,45 @@ function App() {
     }
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setRapResults("Thinking...");
+    const results = await fetchRapperData(formData.person1, formData.person2);
+    setRapResults(results);
+  };
+
   return (
     <div className="App">
-      <div class="header">
-        <a href="#default" class="logo">
-          <img src={logo} className="App-logo" alt="logo" />
-          My OpenAI Interface
-        </a>
-        <div class="header-right">
-          <a class="active" href="#home">
-            Home
-          </a>
-          <a href="#contact">Contact</a>
-          <a href="#about">About</a>
-        </div>
-      </div>
-
+      <Header />
       <main>
-        <h2>Tell me something, and I'll tell you more</h2>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <div>
+              Give me a rap battle between
+              <input
+                type="text"
+                value={formData.person1}
+                onChange={(e) =>
+                  setFormData({ ...formData, person1: e.target.value })
+                }
+              />
+              and
+              <input
+                type="text"
+                value={formData.person2}
+                onChange={(e) =>
+                  setFormData({ ...formData, person2: e.target.value })
+                }
+              />
+            </div>
+            <input type="submit" value="Submit" />
+          </form>
+          <textarea value={rapResults} rows={30} cols={75} />
+        </div>
+
+        <hr />
         <textarea
+          cols={500}
           value={input}
           onChange={(event) => setInput(event.target.value)}
           rows={5}
