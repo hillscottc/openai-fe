@@ -4,9 +4,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { Link } from "react-router-dom";
+import MicIcon from "@mui/icons-material/Mic";
+import SmsIcon from "@mui/icons-material/Sms";
 
 export const mainListItems = (
   <>
@@ -19,14 +20,14 @@ export const mainListItems = (
 
     <ListItemButton component={Link} to="/rap">
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <MicIcon />
       </ListItemIcon>
       <ListItemText primary="Rap Battle" />
     </ListItemButton>
 
     <ListItemButton component={Link} to="/completer">
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <SmsIcon />
       </ListItemIcon>
       <ListItemText primary="Completer" />
     </ListItemButton>
