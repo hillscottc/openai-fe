@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { Dna } from "react-loader-spinner";
+import { getJargon } from "../utils.js";
 
 const fetchRapperData = async (person1, person2) => {
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_KEY,
   });
+  // Silences warning https://community.openai.com/t/error-set-unsafe-header-user-agent-implement-chatgpt/264305
+  configuration.baseOptions.headers = {
+    Authorization: "Bearer " + process.env.REACT_APP_OPENAI_KEY,
+  };
   const openai = new OpenAIApi(configuration);
 
   const response = await openai.createChatCompletion({
@@ -28,20 +36,36 @@ function RapBattle() {
   });
 
   const [rapResults, setRapResults] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setRapResults("Thinking...");
+
+    setRapResults("Thinking, please wait....");
+    setIsLoading(true);
+
+    // start the jargon timer
+    const jargonInterval = setInterval(() => {
+      setRapResults((rapResults) => rapResults + "\n" + getJargon());
+    }, 3000);
+
     const results = await fetchRapperData(formData.person1, formData.person2);
-    setRapResults(results);
+
+    clearInterval(jargonInterval); // stop the jargon timer
+    setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\n" + results);
+    setIsLoading(false);
   };
 
   return (
     <main>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            Give me a rap battle between
+      <form>
+        <div>
+          <Typography variant="h1" gutterBottom>
+            Rap Battle
+          </Typography>
+
+          <Typography variant="subtitle1" gutterBottom>
+            Chatbot, give me a rap battle between <br />
             <input
               type="text"
               value={formData.person1}
@@ -49,7 +73,7 @@ function RapBattle() {
                 setFormData({ ...formData, person1: e.target.value })
               }
             />
-            and
+            &nbsp;and&nbsp;
             <input
               type="text"
               value={formData.person2}
@@ -57,11 +81,28 @@ function RapBattle() {
                 setFormData({ ...formData, person2: e.target.value })
               }
             />
-          </div>
-          <input type="submit" value="Submit" />
-        </form>
-        <textarea value={rapResults} rows={30} cols={75} />
-      </div>
+          </Typography>
+        </div>
+        <br />
+        <Button variant="contained" onClick={handleSubmit}>
+          GO!
+        </Button>
+      </form>
+
+      {/* Loading spinner */}
+      <Dna
+        visible={isLoading}
+        height="80"
+        width="80"
+        ariaLabel="dna-loading"
+        wrapperStyle={{}}
+        wrapperClass="dna-wrapper"
+      />
+
+      <br />
+      {rapResults && (
+        <textarea value={rapResults} rows={30} cols={75} readOnly />
+      )}
     </main>
   );
 }
