@@ -1,3 +1,12 @@
+import Typography from "@mui/material/Typography";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+
 export default function Home() {
-  return <h1>Welcome</h1>;
+  return (
+    <main>
+      <Typography variant="h1" gutterBottom>
+        <DashboardIcon fontSize={"inherit"} /> Welcome
+      </Typography>
+    </main>
+  );
 }
