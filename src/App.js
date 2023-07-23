@@ -130,6 +130,8 @@ export default function App() {
             </IconButton>
           </Toolbar>
         </AppBar>
+
+        {/* LEFT NAV DRAWER */}
         <Drawer variant="permanent" open={open}>
           <Toolbar
             sx={{
@@ -150,6 +152,8 @@ export default function App() {
             {secondaryListItems}
           </List>
         </Drawer>
+
+        {/* MAIN CONTENT */}
         <Box
           component="main"
           sx={{
@@ -174,6 +178,7 @@ export default function App() {
                     height: 240,
                   }}
                 >
+                  {/* ROUTES RENDERED */}
                   <Routes />
                 </Paper>
               </Grid>
