@@ -15,6 +15,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { mainListItems, secondaryListItems } from "./App-LeftNav";
 import Copyright from "./pages/Copyright";
 import Routes from "./Routes";
+import "./index.css";
 
 const drawerWidth = 240;
 

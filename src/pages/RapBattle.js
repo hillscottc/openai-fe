@@ -100,15 +100,22 @@ function RapBattle() {
         </Button>
       </form>
 
-      {/* Loading spinner */}
-      <Dna
-        visible={isLoading}
-        height="80"
-        width="80"
-        ariaLabel="dna-loading"
-        wrapperStyle={{}}
-        wrapperClass="dna-wrapper"
-      />
+      {isLoading && (
+        <div class="container-grid">
+          <div class="col col-1">
+            {/* Loading spinner */}
+            <Dna
+              visible={isLoading}
+              height="80"
+              width="80"
+              ariaLabel="dna-loading"
+              wrapperStyle={{}}
+              wrapperClass="dna-wrapper"
+            />
+          </div>
+          <div class="col col-2">Working</div>
+        </div>
+      )}
 
       <br />
       {rapResults && (

@@ -1,1 +1,13 @@
-/*  Nothing here yet.  */
+.container-grid {
+  display: grid;
+  grid-template-columns: 100px 500px; /*columns widths*/
+  height: 50px;
+}
+
+.col-1 {
+  background-color: inherit;
+}
+
+.col-2 {
+  background-color: inherit;
+}
