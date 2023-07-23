@@ -1,31 +1,35 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./Header";
-import RapBattle from "./RapBattle";
-import Completer from "./Completer";
-import "./App.css";
-
-function Home() {
-  return (
-    <div style={{ padding: 20 }}>
-      <h2>Home View</h2>
-    </div>
-  );
-}
+import { Link } from "react-router-dom";
+import Routes from "./Routes";
+import logo from "./logo.svg";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <>
+      <header>
+        <strong>Scott's Chatbots</strong>
+        <img src={logo} className="App-logo" alt="logo" />
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/rap">Rap Battle</Link>
+            </li>
+            <li>
+              <Link to="/completer">Completer</Link>
+            </li>
+            <li>
+              <Link to="/products">Produtos</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
       <main>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/rap" element={<RapBattle />} />
-            <Route path="/completer" element={<Completer />} />
-          </Routes>
-        </Router>
+        <Routes />
       </main>
-    </div>
+    </>
   );
 }
 

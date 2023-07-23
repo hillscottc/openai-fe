@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import "./App.css";
 
 const fetchRapperData = async (person1, person2) => {
   const configuration = new Configuration({

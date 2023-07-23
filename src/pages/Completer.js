@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import "./App.css";
 
 const fetchData = async (input) => {
   const response = await axios.post(
