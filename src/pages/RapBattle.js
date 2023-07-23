@@ -41,7 +41,7 @@ function RapBattle() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setRapResults("Thinking, please wait....");
+    setRapResults("Working....");
     setIsLoading(true);
 
     // start the jargon timer
@@ -49,11 +49,21 @@ function RapBattle() {
       setRapResults((rapResults) => rapResults + "\n" + getJargon());
     }, 3000);
 
-    const results = await fetchRapperData(formData.person1, formData.person2);
-
-    clearInterval(jargonInterval); // stop the jargon timer
-    setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\n" + results);
-    setIsLoading(false);
+    const MOCKED_QUERY = true;
+    if (MOCKED_QUERY) {
+      // For fake data, during dev.
+      setTimeout(() => {
+        clearInterval(jargonInterval); // stop the jargon timer
+        setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\nMOCKED!!!");
+        setIsLoading(false);
+      }, 10000);
+    } else {
+      // Do the OpenAI query
+      const results = await fetchRapperData(formData.person1, formData.person2);
+      clearInterval(jargonInterval); // stop the jargon timer
+      setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\n" + results);
+      setIsLoading(false);
+    }
   };
 
   return (

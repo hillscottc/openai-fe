@@ -1,5 +1,3 @@
-//Give me 10 short super technical jargon phrases
-
 export function getJargon() {
   return RandomBS[Math.floor(Math.random() * RandomBS.length)];
 }
@@ -54,7 +52,6 @@ const RandomBS = [
   "Deepening a learning-driven generative adversarial networks for idiom super-resolution.",
   "Securing enclave implementation using homomorphic encryption.",
   "Performing non-volatile memory caching of synergistic language table.",
-  "Cloud-native container orchestration with Kubernetes and Istio integration.",
   "Authorizing neural network pruning using L1 regularization for model compression.",
   "Enhancing quantum-resistant cryptographic algorithms for post-quantum security.",
   "Tuning service workers for enhanced WebAssembly access.",
