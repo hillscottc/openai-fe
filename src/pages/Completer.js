@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import Typography from "@mui/material/Typography";
+import SmsIcon from "@mui/icons-material/Sms";
 
 const fetchData = async (input) => {
   const response = await axios.post(
@@ -36,6 +38,10 @@ function Completer() {
 
   return (
     <main>
+      <Typography variant="h1" gutterBottom>
+        <SmsIcon fontSize={"inherit"} /> Completer
+      </Typography>
+
       <textarea
         cols={500}
         value={input}

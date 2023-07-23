@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Dna } from "react-loader-spinner";
 import { getJargon } from "../utils.js";
+import MicIcon from "@mui/icons-material/Mic";
 
 const fetchRapperData = async (person1, person2) => {
   const configuration = new Configuration({
@@ -71,7 +72,7 @@ function RapBattle() {
       <form>
         <div>
           <Typography variant="h1" gutterBottom>
-            Rap Battle
+            <MicIcon fontSize={"inherit"} /> Rap Battle
           </Typography>
 
           <Typography variant="subtitle1" gutterBottom>
