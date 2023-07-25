@@ -13,7 +13,7 @@ import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { mainListItems, secondaryListItems } from "./App-LeftNav";
-import Copyright from "./pages/Copyright";
+import Copyright from "./components/Copyright";
 import Routes from "./Routes";
 import "./index.css";
 

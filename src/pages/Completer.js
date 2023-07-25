@@ -1,27 +1,7 @@
-import axios from "axios";
-import { useState } from "react";
+import {useState} from "react";
 import Typography from "@mui/material/Typography";
 import SmsIcon from "@mui/icons-material/Sms";
-
-const fetchData = async (input) => {
-  const response = await axios.post(
-    "https://api.openai.com/v1/completions",
-    {
-      prompt: `Complete this sentence: "${input}"`,
-      model: "text-davinci-002",
-      max_tokens: 50,
-      n: 1,
-      stop: ".",
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_KEY}`,
-      },
-    }
-  );
-  return response.data.choices[0].text;
-};
+import {fetchCompleter} from "../dataFunctions";
 
 function Completer() {
   const [input, setInput] = useState("");
@@ -29,7 +9,7 @@ function Completer() {
 
   async function handleClick() {
     try {
-      const completedSentence = await fetchData(input);
+      const completedSentence = await fetchCompleter(input);
       setCompletedSentence(completedSentence);
     } catch (error) {
       console.error(error);
