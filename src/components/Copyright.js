@@ -11,7 +11,7 @@ export default function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://www.linkedin.com/in/scotthill2000/">
-        Scott C. Hill
+        Scott C. Hill&nbsp;&nbsp;
       </Link>
       {new Date().getFullYear()}
     </Typography>

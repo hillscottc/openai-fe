@@ -60,7 +60,7 @@ export default function App() {
                                 noWrap
                                 sx={{flexGrow: 1}}
                             >
-                                Scott's Chatbots
+                                Scott's Bots
                             </Typography>
                             {/* <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">

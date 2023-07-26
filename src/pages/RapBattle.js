@@ -30,7 +30,7 @@ function RapBattle() {
       setRapResults((rapResults) => rapResults + "\n" + getJargon());
     }, 3000);
 
-    const MOCKED_QUERY = true;
+    const MOCKED_QUERY = false;
     if (MOCKED_QUERY) {
       // For fake data, during dev.
       setTimeout(() => {
