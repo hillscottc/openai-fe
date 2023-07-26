@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useContext} from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import {Dna} from "react-loader-spinner";
@@ -6,12 +6,15 @@ import {getJargon} from "../utils.js";
 import MicIcon from "@mui/icons-material/Mic";
 import Fader from "../components/Fader";
 import {fetchRapBattle} from "../dataFunctions";
+import {AppContext} from "../components/AppContext";
 
 function RapBattle() {
   const [formData, setFormData] = useState({
     person1: "",
     person2: "",
   });
+
+  const value = useContext(AppContext);
 
   const [rapResults, setRapResults] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -51,6 +54,8 @@ function RapBattle() {
           <Typography variant="h1" gutterBottom>
             <MicIcon fontSize={"inherit"} /> Rap Battle
           </Typography>
+
+          <h3>context val = {value}</h3>
 
           <Typography variant="subtitle1" gutterBottom>
             Chatbot, give me a rap battle between <br />
