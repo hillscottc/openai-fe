@@ -26,22 +26,22 @@ function RapBattle() {
     setIsLoading(true);
 
     // start the jargon timer
-    const jargonInterval = setInterval(() => {
-      setRapResults((rapResults) => rapResults + "\n" + getJargon());
-    }, 3000);
+    // const jargonInterval = setInterval(() => {
+    //   setRapResults((rapResults) => rapResults + "\n" + getJargon());
+    // }, 3000);
 
     const MOCKED_QUERY = false;
     if (MOCKED_QUERY) {
       // For fake data, during dev.
       setTimeout(() => {
-        clearInterval(jargonInterval); // stop the jargon timer
+        // clearInterval(jargonInterval); // stop the jargon timer
         setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\nMOCKED!!!");
         setIsLoading(false);
       }, 10000);
     } else {
       // Do the OpenAI query
       const results = await fetchRapBattle(formData.person1, formData.person2);
-      clearInterval(jargonInterval); // stop the jargon timer
+      // clearInterval(jargonInterval); // stop the jargon timer
       setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\n" + results);
       setIsLoading(false);
     }
@@ -55,10 +55,10 @@ function RapBattle() {
             <MicIcon fontSize={"inherit"} /> Rap Battle
           </Typography>
 
-          <h3>context val = {value}</h3>
+          {/*<h3>context val = {value}</h3>*/}
 
           <Typography variant="subtitle1" gutterBottom>
-            Chatbot, give me a rap battle between <br />
+            Rap Bot, give me a battle between <br />
             <input
               type="text"
               value={formData.person1}
@@ -97,7 +97,7 @@ function RapBattle() {
           </div>
           <div class="col col-2">
             <Fader text="Working"></Fader>
-            <Fader text={getJargon()}></Fader>
+            {/*<Fader text={getJargon()}></Fader>*/}
           </div>
         </div>
       )}
