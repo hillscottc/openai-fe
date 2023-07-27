@@ -1,8 +1,8 @@
 # OpenAI-FE
 
-A React app using the [OpenAI Platform](https://platform.openai.com/).
+A React app leveraging the [OpenAI Platform](https://platform.openai.com/).
 
-Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React, React Router, MaterialUI
 
 https://react.dev/learn/passing-data-deeply-with-context
 
