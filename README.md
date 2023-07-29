@@ -2,7 +2,7 @@
 
 A React app leveraging the [OpenAI Platform](https://platform.openai.com/).
 
-React, React Router, MaterialUI
+Coded with React, React Router and MaterialUI
 
-https://react.dev/learn/passing-data-deeply-with-context
-https://github.com/IsaacThaJunior/react-hook-form-and-mui
+Hosted at https://scotts-bots.onrender.com/ on [Render](https://render.com/)
+

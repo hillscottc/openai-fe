@@ -1,5 +1,15 @@
 import {useState, useContext} from "react";
-import {Button, Paper, Typography, InputLabel, MenuItem, FormControl, TextField, Box} from "@mui/material";
+import {
+  Button,
+  Paper,
+  Typography,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  TextField,
+  Box,
+  FormHelperText
+} from "@mui/material";
 import {Dna} from "react-loader-spinner";
 import {getJargon} from "../common/utils.js";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -18,50 +28,57 @@ function ChatBot() {
   const [formData, setFormData] = useState({
     person1: "",
     person2: "",
-    chatType: ""
+    chatType: "discussion"
   });
 
   const value = useContext(AppContext);
 
   const [rapResults, setRapResults] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [formError, setFormError] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // setRapResults("Working....");
-    setIsLoading(true);
 
     // start the jargon timer
     // const jargonInterval = setInterval(() => {
     //   setRapResults((rapResults) => rapResults + "\n" + getJargon());
     // }, 3000);
 
-    const MOCKED_QUERY = false;
-    if (MOCKED_QUERY) {
-      // For fake data, during dev.
-      setTimeout(() => {
-        // clearInterval(jargonInterval); // stop the jargon timer
-        setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\nMOCKED!!!");
-        setIsLoading(false);
-      }, 10000);
+
+    if (!formData.chatType || !formData.person1 || !formData.person2) {
+      setFormError(true)
     } else {
-      // Do the OpenAI query
-
-      // const results = await fetchChat(formData.person1, formData.person2);
-      const results = await fetchChat(
-        {
-          persons: [formData.person1, formData.person2],
-          topic: null,
-          chatType: formData.chatType
+      setFormError(false)
+      if (!formError) {
+        // setRapResults("Working....");
+        setIsLoading(true);
+        const MOCKED_QUERY = false;
+        if (MOCKED_QUERY) {
+          // For fake data, during dev.
+          setTimeout(() => {
+            // clearInterval(jargonInterval); // stop the jargon timer
+            setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\nMOCKED!!!");
+            setIsLoading(false);
+          }, 10000);
+        } else {
+          // Do the OpenAI query
+          // const results = await fetchChat(formData.person1, formData.person2);
+          const results = await fetchChat(
+            {
+              persons: [formData.person1, formData.person2],
+              topic: null,
+              chatType: formData.chatType
+            }
+          );
+          // clearInterval(jargonInterval); // stop the jargon timer
+          setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\n" + results);
+          setIsLoading(false);
         }
-      );
-
-
-      // clearInterval(jargonInterval); // stop the jargon timer
-      setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\n" + results);
-      setIsLoading(false);
+      }
     }
+
   };
 
   const personHelperText = "A person by name or description. Trump? Cleopatra? Sinead's barber? My lazy cousin? etc...";
@@ -77,7 +94,7 @@ function ChatBot() {
     >
       <form>
         <div>
-          <Typography variant="h1" gutterBottom>
+          <Typography variant="h2" gutterBottom>
             <ChatIcon fontSize={"inherit"}/> Chat Bot
           </Typography>
 
@@ -94,10 +111,13 @@ function ChatBot() {
                   onChange={(e) =>
                     setFormData({...formData, chatType: e.target.value})
                   }
+                  error={formError && !formData.chatType}
+                  helperText="required"
                 >
                   <MenuItem value={"rap battle"}>rap battle</MenuItem>
                   <MenuItem value={"discussion"}>discussion</MenuItem>
                 </Select>
+                <FormHelperText>required</FormHelperText>
               </FormControl>
             </Box>
 
@@ -114,6 +134,8 @@ function ChatBot() {
               fullWidth
               label={"Person"}
               variant="outlined"
+              error={formError && !formData.person1}
+              helperText="required"
             />
             &nbsp;and&nbsp;
 
@@ -127,6 +149,8 @@ function ChatBot() {
               fullWidth
               label={"Person"}
               variant="outlined"
+              error={formError && !formData.person2}
+              helperText="required"
             />
           </Typography>
         </div>
