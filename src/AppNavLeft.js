@@ -5,8 +5,8 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import { Link } from "react-router-dom";
-import MicIcon from "@mui/icons-material/Mic";
+import {Link} from "react-router-dom";
+import ChatIcon from "@mui/icons-material/Chat";
 import SmsIcon from "@mui/icons-material/Sms";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
@@ -18,33 +18,35 @@ export default function AppNavLeft() {
       <List component="nav">
         <ListItemButton component={Link} to="/">
           <ListItemIcon>
-            <DashboardIcon />
+            <DashboardIcon/>
           </ListItemIcon>
-          <ListItemText primary="Home" />
+          <ListItemText primary="Home"/>
         </ListItemButton>
 
-        <ListItemButton component={Link} to="/rap">
+        <ListItemButton component={Link} to="/chat">
           <ListItemIcon>
-            <MicIcon />
+            <ChatIcon/>
           </ListItemIcon>
-          <ListItemText primary="Rap Battle" />
+          <ListItemText primary="Chat Bot"/>
         </ListItemButton>
 
-        <ListItemButton component={Link} to="/completer">
-          <ListItemIcon>
-            <SmsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Completer" />
-        </ListItemButton>
+        {/*<ListItemButton component={Link} to="/completer">*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <SmsIcon/>*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Completer"/>*/}
+        {/*</ListItemButton>*/}
+
+
         <Divider sx={{my: 1}}/>
         <ListSubheader component="div" inset>
           Other Stuff
         </ListSubheader>
         <ListItemButton component={Link} to="/about">
           <ListItemIcon>
-            <AssignmentIcon />
+            <AssignmentIcon/>
           </ListItemIcon>
-          <ListItemText primary="About" />
+          <ListItemText primary="About"/>
         </ListItemButton>
       </List>
     </>
