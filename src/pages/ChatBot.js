@@ -135,7 +135,7 @@ function ChatBot() {
               label={"Person"}
               variant="outlined"
               error={formError && !formData.person1}
-              helperText="required"
+              // helperText="required"
             />
             &nbsp;and&nbsp;
 
@@ -150,7 +150,7 @@ function ChatBot() {
               label={"Person"}
               variant="outlined"
               error={formError && !formData.person2}
-              helperText="required"
+              // helperText="required"
             />
           </Typography>
         </div>
