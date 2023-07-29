@@ -12,6 +12,7 @@ function RapBattle() {
   const [formData, setFormData] = useState({
     person1: "",
     person2: "",
+    isRapChecked: false
   });
 
   const value = useContext(AppContext);
@@ -43,9 +44,10 @@ function RapBattle() {
 
       // const results = await fetchChat(formData.person1, formData.person2);
       const results = await fetchChat(
-        {persons: [formData.person1, formData.person2],
+        {
+          persons: [formData.person1, formData.person2],
           topic: null,
-          isRap: true
+          isRap: formData.isRapChecked
         }
       );
 
@@ -61,18 +63,18 @@ function RapBattle() {
       <form>
         <div>
           <Typography variant="h1" gutterBottom>
-            <MicIcon fontSize={"inherit"} /> Rap Battle
+            <MicIcon fontSize={"inherit"}/> Rap Battle
           </Typography>
 
           {/*<h3>context val = {value}</h3>*/}
 
           <Typography variant="subtitle1" gutterBottom>
-            Rap Bot, give me a battle between <br />
+            Rap Bot, give me a battle between <br/>
             <input
               type="text"
               value={formData.person1}
               onChange={(e) =>
-                setFormData({ ...formData, person1: e.target.value })
+                setFormData({...formData, person1: e.target.value})
               }
             />
             &nbsp;and&nbsp;
@@ -80,12 +82,24 @@ function RapBattle() {
               type="text"
               value={formData.person2}
               onChange={(e) =>
-                setFormData({ ...formData, person2: e.target.value })
+                setFormData({...formData, person2: e.target.value})
               }
             />
           </Typography>
         </div>
-        <br />
+
+        <div>
+          <label>Rap?
+          <input
+          type="checkbox"
+          checked={formData.isRapChecked}
+          onChange={(e) =>
+          setFormData({...formData, isRapChecked: !formData.isRapChecked})
+          } />
+          </label>
+          </div>
+
+        <br/>
         <Button variant="contained" onClick={handleSubmit}>
           GO!
         </Button>
@@ -111,12 +125,12 @@ function RapBattle() {
         </div>
       )}
 
-      <br />
+      <br/>
       {rapResults && (
-        <textarea value={rapResults} rows={30} cols={75} readOnly />
+        <textarea value={rapResults} rows={30} cols={75} readOnly/>
       )}
     </main>
-  );
+);
 }
 
 export default RapBattle;
