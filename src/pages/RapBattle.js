@@ -12,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
+import {FormDemo} from "../FormDemo";
 
 function RapBattle() {
   const [formData, setFormData] = useState({
@@ -64,83 +65,86 @@ function RapBattle() {
   };
 
   return (
-    <main>
-      <form>
-        <div>
-          <Typography variant="h1" gutterBottom>
-            <MicIcon fontSize={"inherit"}/> Rap Battle
-          </Typography>
+    <>
+      <FormDemo/>
+      <div>
+        <form>
+          <div>
+            <Typography variant="h1" gutterBottom>
+              <MicIcon fontSize={"inherit"}/> Rap Battle
+            </Typography>
 
-          {/*<h3>context val = {value}</h3>*/}
+            {/*<h3>context val = {value}</h3>*/}
 
-          <Typography variant="subtitle1" gutterBottom>
-            Rap Bot, give me a
-            <Box sx={{minWidth: 120}}>
-              <FormControl fullWidth>
-                <InputLabel>Chat Type</InputLabel>
-                <Select
-                  value={formData.chatType}
-                  label="Chat Type"
-                  onChange={(e) =>
-                    setFormData({...formData, chatType: e.target.value})
-                  }
-                >
-                  <MenuItem value={"rap battle"}>rap battle</MenuItem>
-                  <MenuItem value={"discussion"}>discussion</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+            <Typography variant="subtitle1" gutterBottom>
+              Rap Bot, give me a
+              <Box sx={{minWidth: 120}}>
+                <FormControl fullWidth>
+                  <InputLabel>Chat Type</InputLabel>
+                  <Select
+                    value={formData.chatType}
+                    label="Chat Type"
+                    onChange={(e) =>
+                      setFormData({...formData, chatType: e.target.value})
+                    }
+                  >
+                    <MenuItem value={"rap battle"}>rap battle</MenuItem>
+                    <MenuItem value={"discussion"}>discussion</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
 
-            <br/>
-            between <br/>
-            <input
-              type="text"
-              value={formData.person1}
-              onChange={(e) =>
-                setFormData({...formData, person1: e.target.value})
-              }
-            />
-            &nbsp;and&nbsp;
-            <input
-              type="text"
-              value={formData.person2}
-              onChange={(e) =>
-                setFormData({...formData, person2: e.target.value})
-              }
-            />
-          </Typography>
-        </div>
+              <br/>
+              between <br/>
+              <input
+                type="text"
+                value={formData.person1}
+                onChange={(e) =>
+                  setFormData({...formData, person1: e.target.value})
+                }
+              />
+              &nbsp;and&nbsp;
+              <input
+                type="text"
+                value={formData.person2}
+                onChange={(e) =>
+                  setFormData({...formData, person2: e.target.value})
+                }
+              />
+            </Typography>
+          </div>
+          <br/>
+          <Button variant="contained" onClick={handleSubmit}>
+            GO!
+          </Button>
+        </form>
+
+        {isLoading && (
+          <div class="container-grid">
+            <div class="col col-1">
+              {/* Loading spinner */}
+              <Dna
+                visible={isLoading}
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper"
+              />
+            </div>
+            <div class="col col-2">
+              <Fader text="Working"></Fader>
+              {/*<Fader text={getJargon()}></Fader>*/}
+            </div>
+          </div>
+        )}
+
         <br/>
-        <Button variant="contained" onClick={handleSubmit}>
-          GO!
-        </Button>
-      </form>
-
-      {isLoading && (
-        <div class="container-grid">
-          <div class="col col-1">
-            {/* Loading spinner */}
-            <Dna
-              visible={isLoading}
-              height="80"
-              width="80"
-              ariaLabel="dna-loading"
-              wrapperStyle={{}}
-              wrapperClass="dna-wrapper"
-            />
-          </div>
-          <div class="col col-2">
-            <Fader text="Working"></Fader>
-            {/*<Fader text={getJargon()}></Fader>*/}
-          </div>
-        </div>
-      )}
-
-      <br/>
-      {rapResults && (
-        <textarea value={rapResults} rows={30} cols={75} readOnly/>
-      )}
-    </main>
+        {rapResults && (
+          <textarea value={rapResults} rows={30} cols={75} readOnly/>
+        )}
+      </div>
+    </>
   );
 }
 

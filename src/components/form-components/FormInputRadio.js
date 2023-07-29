@@ -6,8 +6,7 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { Controller } from "react-hook-form";
-import { FormInputProps } from "./FormInputProps";
+import {Controller} from "react-hook-form";
 
 const options = [
   {
@@ -20,17 +19,17 @@ const options = [
   },
 ];
 
-export const FormInputRadio: React.FC<FormInputProps> = ({
-  name,
-  control,
-  label,
-}) => {
+export const FormInputRadio = ({
+                                 name,
+                                 control,
+                                 label,
+                               }) => {
   const generateRadioOptions = () => {
     return options.map((singleOption) => (
       <FormControlLabel
         value={singleOption.value}
         label={singleOption.label}
-        control={<Radio />}
+        control={<Radio/>}
       />
     ));
   };
@@ -42,10 +41,10 @@ export const FormInputRadio: React.FC<FormInputProps> = ({
         name={name}
         control={control}
         render={({
-          field: { onChange, value },
-          fieldState: { error },
-          formState,
-        }) => (
+                   field: {onChange, value},
+                   fieldState: {error},
+                   formState,
+                 }) => (
           <RadioGroup value={value} onChange={onChange}>
             {generateRadioOptions()}
           </RadioGroup>
