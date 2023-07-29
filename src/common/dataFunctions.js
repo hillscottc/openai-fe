@@ -3,7 +3,8 @@ import axios from "axios";
 
 const authHeader = `Bearer ${process.env.REACT_APP_OPENAI_KEY}`
 
-export const fetchRapBattle = async (person1, person2) => {
+// export const fetchChat = async (person1, person2, topic, isRap=false) => {
+export const fetchChat = async ({persons, topic, isRap = false}) => {
   // Uses the openai library
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_KEY,
@@ -14,13 +15,14 @@ export const fetchRapBattle = async (person1, person2) => {
   };
   const openai = new OpenAIApi(configuration);
 
+  const chatInto = isRap ? "Write a rap battle" : "create a discussion"
+  let content = `${chatInto} between ${persons[0]} and ${persons[1]}`
+  if (topic) content += ` discussing ${topic}`
+
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
-      {
-        role: "user",
-        content: `Write a rap battle between ${person1} and ${person2}.`,
-      },
+      {role: "user", content },
     ],
     temperature: 0.8,
     max_tokens: 1024,

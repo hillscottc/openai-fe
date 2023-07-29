@@ -5,7 +5,7 @@ import {Dna} from "react-loader-spinner";
 import {getJargon} from "../common/utils.js";
 import MicIcon from "@mui/icons-material/Mic";
 import Fader from "../components/Fader";
-import {fetchRapBattle} from "../common/dataFunctions";
+import {fetchChat} from "../common/dataFunctions";
 import {AppContext} from "../AppContext";
 
 function RapBattle() {
@@ -40,7 +40,16 @@ function RapBattle() {
       }, 10000);
     } else {
       // Do the OpenAI query
-      const results = await fetchRapBattle(formData.person1, formData.person2);
+
+      // const results = await fetchChat(formData.person1, formData.person2);
+      const results = await fetchChat(
+        {persons: [formData.person1, formData.person2],
+          topic: null,
+          isRap: true
+        }
+      );
+
+
       // clearInterval(jargonInterval); // stop the jargon timer
       setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\n" + results);
       setIsLoading(false);
