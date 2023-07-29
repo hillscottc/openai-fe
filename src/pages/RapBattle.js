@@ -7,12 +7,17 @@ import MicIcon from "@mui/icons-material/Mic";
 import Fader from "../components/Fader";
 import {fetchChat} from "../common/dataFunctions";
 import {AppContext} from "../AppContext";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, {SelectChangeEvent} from '@mui/material/Select';
 
 function RapBattle() {
   const [formData, setFormData] = useState({
     person1: "",
     person2: "",
-    isRapChecked: false
+    chatType: ""
   });
 
   const value = useContext(AppContext);
@@ -47,7 +52,7 @@ function RapBattle() {
         {
           persons: [formData.person1, formData.person2],
           topic: null,
-          isRap: formData.isRapChecked
+          chatType: formData.chatType
         }
       );
 
@@ -69,7 +74,25 @@ function RapBattle() {
           {/*<h3>context val = {value}</h3>*/}
 
           <Typography variant="subtitle1" gutterBottom>
-            Rap Bot, give me a battle between <br/>
+            Rap Bot, give me a
+            <Box sx={{minWidth: 120}}>
+              <FormControl fullWidth>
+                <InputLabel>Chat Type</InputLabel>
+                <Select
+                  value={formData.chatType}
+                  label="Chat Type"
+                  onChange={(e) =>
+                    setFormData({...formData, chatType: e.target.value})
+                  }
+                >
+                  <MenuItem value={"rap battle"}>rap battle</MenuItem>
+                  <MenuItem value={"discussion"}>discussion</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+
+            <br/>
+            between <br/>
             <input
               type="text"
               value={formData.person1}
@@ -87,18 +110,6 @@ function RapBattle() {
             />
           </Typography>
         </div>
-
-        <div>
-          <label>Rap?
-          <input
-          type="checkbox"
-          checked={formData.isRapChecked}
-          onChange={(e) =>
-          setFormData({...formData, isRapChecked: !formData.isRapChecked})
-          } />
-          </label>
-          </div>
-
         <br/>
         <Button variant="contained" onClick={handleSubmit}>
           GO!
@@ -130,7 +141,7 @@ function RapBattle() {
         <textarea value={rapResults} rows={30} cols={75} readOnly/>
       )}
     </main>
-);
+  );
 }
 
 export default RapBattle;

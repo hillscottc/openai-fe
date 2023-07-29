@@ -16,6 +16,7 @@
     "openai": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.2",
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
@@ -48,7 +49,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
-  "engines" : {
-    "node" : ">=14"
+  "engines": {
+    "node": ">=14"
   }
 }
