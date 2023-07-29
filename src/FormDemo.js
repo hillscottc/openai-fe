@@ -2,14 +2,11 @@ import {Button, Paper, Typography} from "@mui/material";
 import {useForm} from "react-hook-form";
 import {FormInputText} from "./components/form-components/FormInputText";
 import {FormInputDropdown} from "./components/form-components/FormInputDropdown";
-import {FormInputRadio} from "./components/form-components/FormInputRadio";
 
 const defaultValues = {
-  textValue: "",
-  radioValue: "",
-  checkboxValue: [],
+  person1: "",
+  person2: "",
   dropdownValue: "",
-  sliderValue: 0,
 };
 export const FormDemo = () => {
   const {handleSubmit, reset, control, setValue} = useForm({
@@ -24,17 +21,14 @@ export const FormDemo = () => {
         display: "grid",
         gridRowGap: "20px",
         padding: "20px",
-        margin: "10px 300px",
+        margin: "5px 10px",
       }}
     >
-      <Typography variant="h4"> Form Demo</Typography>
+      <Typography variant="h4">Scott's Chatbot</Typography>
 
-      <FormInputText name="textValue" control={control} label="Text Input"/>
-      <FormInputRadio
-        name={"radioValue"}
-        control={control}
-        label={"Radio Input"}
-      />
+      <FormInputText name="person1" control={control} label="Person 1"/>
+      <FormInputText name="person2" control={control} label="Person 2"/>
+
       <FormInputDropdown
         name="dropdownValue"
         control={control}

@@ -4,12 +4,12 @@ import {Controller} from "react-hook-form";
 
 const options = [
   {
-    label: "Dropdown Option 1",
-    value: "1",
+    label: "rap battle",
+    value: "rap battle",
   },
   {
-    label: "Dropdown Option 2",
-    value: "2",
+    label: "discussion",
+    value: "discussion",
   },
 ];
 
