@@ -9,7 +9,7 @@ export default function About() {
         <DashboardIcon fontSize={"inherit"}/> About
       </Typography>
 
-      A React app leveraging the [OpenAI Platform](https://platform.openai.com/).
+      A React app leveraging the <a href="https://platform.openai.com/">OpenAI Platform</a>.
       <br/><br/>
       Coded with React, React Router and MaterialUI
       <br/><br/>
