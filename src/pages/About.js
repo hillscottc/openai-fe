@@ -14,9 +14,6 @@ export default function About() {
       Coded with React, React Router and MaterialUI
       <br/><br/>
       Source Code: <a href={"https://github.com/hillscottc/openai-fe"}>https://github.com/hillscottc/openai-fe</a>
-      <br/><br/>
-      Hosted at <a href="https://scotts-bots.onrender.com/">https://scotts-bots.onrender.com</a> on <a
-      href="https://render.com/">Render</a>
 
     </main>
   );

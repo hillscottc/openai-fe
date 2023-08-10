@@ -11,18 +11,11 @@ import {
   FormHelperText
 } from "@mui/material";
 import {Dna} from "react-loader-spinner";
-import {getJargon} from "../common/utils.js";
 import ChatIcon from "@mui/icons-material/Chat";
 import Fader from "../components/Fader";
 import {fetchChat} from "../common/dataFunctions";
 import {AppContext} from "../AppContext";
-// import Box from '@mui/material/Box';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
-
-// import TextField from "@mui/material/TextField";
 
 function ChatBot() {
   const [formData, setFormData] = useState({
@@ -40,13 +33,6 @@ function ChatBot() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-
-    // start the jargon timer
-    // const jargonInterval = setInterval(() => {
-    //   setRapResults((rapResults) => rapResults + "\n" + getJargon());
-    // }, 3000);
-
-
     if (!formData.chatType || !formData.person1 || !formData.person2) {
       setFormError(true)
     } else {
@@ -56,15 +42,10 @@ function ChatBot() {
         setIsLoading(true);
         const MOCKED_QUERY = false;
         if (MOCKED_QUERY) {
-          // For fake data, during dev.
-          setTimeout(() => {
-            // clearInterval(jargonInterval); // stop the jargon timer
-            setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\nMOCKED!!!");
-            setIsLoading(false);
-          }, 10000);
+          setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\nMOCKED!!!");
+          setIsLoading(false);
         } else {
           // Do the OpenAI query
-          // const results = await fetchChat(formData.person1, formData.person2);
           const results = await fetchChat(
             {
               persons: [formData.person1, formData.person2],
@@ -72,7 +53,6 @@ function ChatBot() {
               chatType: formData.chatType
             }
           );
-          // clearInterval(jargonInterval); // stop the jargon timer
           setRapResults((rapResults) => rapResults + "\n\n\nRESULTS:\n" + results);
           setIsLoading(false);
         }
@@ -81,7 +61,7 @@ function ChatBot() {
 
   };
 
-  const personHelperText = "A person by name or description. Trump? Cleopatra? Sinead's barber? My lazy cousin? etc...";
+  const personHelperText = "A real or fictional person by name or description.";
 
   return (
     <Paper

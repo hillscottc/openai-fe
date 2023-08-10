@@ -1,3 +1,4 @@
+// A silly function to return technical sounding nonsense.
 export function getJargon() {
   return RandomBS[Math.floor(Math.random() * RandomBS.length)];
 }
