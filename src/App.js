@@ -1,11 +1,5 @@
 import * as React from "react";
-import {createTheme, ThemeProvider} from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
+import {Box, Toolbar, Typography, IconButton, Container, CssBaseline, createTheme, ThemeProvider} from '@mui/material';
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import AppNavLeft from "./AppNavLeft";
@@ -83,7 +77,7 @@ export default function App() {
                 <ChevronLeftIcon/>
               </IconButton>
             </Toolbar>
-            <AppNavLeft />
+            <AppNavLeft/>
           </Drawer>
 
           {/* MAIN CONTENT */}
